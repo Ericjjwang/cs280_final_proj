@@ -1,0 +1,18 @@
+# Generated outputs
+outputs/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+
+# Model weight caches
+.cache/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store

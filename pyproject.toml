@@ -20,6 +20,7 @@ dependencies = [
     "numpy<2",
     "scipy",
     "requests",
+    "rembg",
 ]
 
 [tool.uv.sources]
