@@ -1,0 +1,5 @@
+Scene _fake_scene:
+  Object Sampson median:     refractive=N/A, matte=N/A, ratio=N/A
+  Background Sampson median: refractive=N/A, matte=N/A, ratio=N/A
+  Verdict: [FAIL] core claim (object_ratio > 2.0 and background_ratio < 1.5)
+  Reason:  object_ratio=N/A (no object matches); background_ratio=N/A (no background matches)

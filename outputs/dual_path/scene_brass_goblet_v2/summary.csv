@@ -1,0 +1,7 @@
+scene_id,view_idx,azimuth,elevation,n_matches_refractive,n_matches_matte,n_object_matches_refractive,n_object_matches_matte,n_background_matches_refractive,n_background_matches_matte,object_sampson_refractive_median,object_sampson_matte_median,object_sampson_ratio,background_sampson_refractive_median,background_sampson_matte_median,background_sampson_ratio
+scene_brass_goblet_v2,0,29.999999999999996,20.0,41,3,20,0,6,0,13.433592113411727,,,38.60159152581433,,
+scene_brass_goblet_v2,1,90.0,-10.000000000000004,6,6,0,0,0,0,,,,,,
+scene_brass_goblet_v2,2,150.0,20.0,25,3,16,0,6,0,11.727268822767066,,,6.7946601269113565,,
+scene_brass_goblet_v2,3,210.0,-10.000000000000002,7,0,0,0,0,0,,,,,,
+scene_brass_goblet_v2,4,270.0,20.0,13,3,0,0,0,0,,,,,,
+scene_brass_goblet_v2,5,330.0,-10.0,21,2,14,0,0,0,25.241503458549644,,,,,

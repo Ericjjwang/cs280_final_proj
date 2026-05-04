@@ -1,0 +1,7 @@
+scene_id,view_idx,azimuth,elevation,n_matches_refractive,n_matches_matte,n_object_matches_refractive,n_object_matches_matte,n_background_matches_refractive,n_background_matches_matte,object_sampson_refractive_median,object_sampson_matte_median,object_sampson_ratio,background_sampson_refractive_median,background_sampson_matte_median,background_sampson_ratio
+scene_glass_suzanne,0,29.999999999999996,20.0,57,125,39,48,6,59,4.0990655140049075,10.313915030189781,0.3974306072918542,6.134757686159883,29.70404161527882,0.20652939305755477
+scene_glass_suzanne,1,90.0,-10.000000000000004,51,3,21,0,12,0,12.963281055230912,,,13.12964033339513,,
+scene_glass_suzanne,2,150.0,20.0,23,2,0,0,4,0,,,,27.27040877392031,,
+scene_glass_suzanne,3,210.0,-10.000000000000002,18,17,0,0,0,0,,,,,,
+scene_glass_suzanne,4,270.0,20.0,97,13,56,0,25,0,12.101189243904344,,,64.21262270008356,,
+scene_glass_suzanne,5,330.0,-10.0,69,91,39,55,19,22,11.63653198271133,11.754777688004582,0.9899406259793482,25.84226686475847,20.139080373233266,1.2831900159207505

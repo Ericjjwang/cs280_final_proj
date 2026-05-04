@@ -1,0 +1,299 @@
+哦——这个原标题的细节让我重新思考了。
+
+**"Transparent Object Perception" + "Material Masking Approach"** 其实跟你现在做的事**不太对得上**：
+
+- "Transparent" 暗示主角是 glass/玻璃 → 但你最强 finding 是 **matte > glass > brass**（matte 反而最糟）
+- "Material Masking" 暗示用 masking 技术分离材质 → 但你实际做的是 dual-path **rendering 对照**，不是 masking
+- "Perception" 还是那个老问题 → 你做的是 diagnostic 不是 perception 任务
+
+但既然 OpenReview 已经用了这个标题，**完全推翻不合适**。让我给你一个**优雅的折中方案**，主标题尽量保留 + 副标题校准方向。
+
+---
+
+## 我推荐的最终标题
+
+```
+Geometry-Consistent Simulation for Transparent Object Perception:
+A Dual-Path Material Masking Approach
+─── 
+Diagnosing Hallucination in Multi-View Diffusion 
+Across Reflective, Refractive, and Lambertian Surfaces
+```
+
+主标题：**完全保留 OpenReview 上的原标题**（一字不改）
+
+副标题：精确说明你 Pre 的实际内容和**3 材质对比**
+
+### 为什么这样
+
+1. **OpenReview 一致性**：reviewer 看 paper ID 完全对得上
+2. **诚实**：副标题 explicit 说"3 种材质"，避免"Transparent Object" 让观众以为你只做 glass
+3. **演讲开场可解释**：你可以说："The original work focused on transparent objects via dual-path rendering. In this presentation, we extend the analysis to three material types and discover counter-intuitive patterns."
+
+---
+
+## 完整 Slide 规划（最终版）
+
+### 关于工具
+
+我假设你用 **Keynote / Google Slides / PowerPoint** 手动搭。每张 slide 我给你：
+- 标题
+- 文字内容（你直接复制粘贴）
+- 图（如果有）
+- 演讲稿（你自己读熟，speaker notes 用）
+- 时间预算
+
+---
+
+### SLIDE 1 — Title (15s)
+
+**布局**：
+
+```
+┌─────────────────────────────────────┐
+│                                     │
+│  Geometry-Consistent Simulation     │
+│  for Transparent Object Perception  │
+│  A Dual-Path Material Masking       │
+│  Approach                           │
+│                                     │
+│  ─────────────                      │
+│                                     │
+│  Diagnosing Hallucination in        │
+│  Multi-View Diffusion Across        │
+│  Reflective, Refractive, and        │
+│  Lambertian Surfaces                │
+│                                     │
+│  Yujie Wang · Tian [姓]             │
+│  [Course Name] · May 4, 2026        │
+│                                     │
+└─────────────────────────────────────┘
+```
+
+**演讲稿**：
+> "Today I'll present our diagnostic study of multi-view diffusion models — specifically how Zero123++ hallucinates when generating novel views across different material types."
+
+---
+
+### SLIDE 2 — Motivation (25s)
+
+**标题**：The novel view synthesis success story — and a blind spot
+
+**Bullet points**（直接复制）：
+- Multi-view diffusion (Zero123++, MVDream) achieves SOTA novel view synthesis
+- Most evaluations: Lambertian objects (Objaverse, GSO benchmarks)
+- Real-world objects are non-Lambertian: glass, metal, ceramics
+- **Open question:** How do these models behave when appearance depends on viewpoint?
+
+**视觉**（可选）：右侧放 1 张代表 NVS 成功的图（任何 Zero123++ demo 输出）。如果没现成的，纯文字也 OK。
+
+**演讲稿**：
+> "Multi-view diffusion has achieved impressive novel view synthesis. But evaluations focus on Lambertian objects. Real objects — glass, metal, ceramics — have view-dependent appearance. So our question: how do these models actually behave on non-Lambertian surfaces?"
+
+---
+
+### SLIDE 3 — Hypothesis (20s)
+
+**标题**：Initial hypothesis: refractive should be hardest
+
+**Bullet points**：
+- Reflection / refraction → appearance changes with viewpoint
+- This violates epipolar consistency (basis of feature matching)
+- **Predicted ordering:** Matte (easy) < Reflective < Refractive (hardest)
+
+**视觉**（可选）：一个简单的示意图——3 个杯子并排 + 简单标记 difficulty。或者纯文字。
+
+**演讲稿**：
+> "Our initial hypothesis: reflective and refractive surfaces violate epipolar consistency, so we expected hallucination severity to follow material complexity — matte easiest, glass hardest."
+
+---
+
+### SLIDE 4 — Method (35s)
+
+**标题**：Dual-path simulation pipeline
+
+**视觉**（自己画的流程图）：
+
+```
+                    ┌──────────────┐
+                    │  Same scene  │
+                    │  Same pose   │
+                    │  Same light  │
+                    │  Same seed   │
+                    └──────┬───────┘
+                           │
+                ┌──────────┴──────────┐
+                ▼                     ▼
+          ┌──────────┐          ┌──────────┐
+          │Refractive│          │  Matte   │
+          │   path   │          │   path   │
+          │ (brass /  │          │  (gray)  │
+          │  glass)  │          └─────┬────┘
+          └─────┬────┘                │
+                │                      │
+                └──────────┬───────────┘
+                           │
+                           ▼
+                    ┌─────────────┐
+                    │  Zero123++  │
+                    │  (6 novel   │
+                    │   views)    │
+                    └──────┬──────┘
+                           │
+                           ▼
+                    ┌─────────────┐
+                    │ LoFTR match │
+                    │   density + │
+                    │ Sampson dist│
+                    └─────────────┘
+```
+
+**画法建议**（Keynote 5 分钟）：
+- 用 Insert → Shape → Rectangle，连箭头
+- 不需要美，能讲清楚就行
+
+**Bullet points**（图旁边的解释）：
+- Same scene, only material differs
+- Render cond → Zero123++ → 6 novel views
+- Measure LoFTR matches + Sampson per region
+
+**演讲稿**：
+> "Our pipeline: Blender renders the same scene with two materials — original (brass or glass) and matte gray as control. Camera poses, lighting, and seed are shared. We feed each cond image to Zero123++, generate six views, and measure LoFTR match density between cond and outputs. We test three materials."
+
+---
+
+### SLIDE 5 — Visual finding (主图, 60s) ⭐
+
+**标题**：Three distinct hallucination signatures
+
+**主图**：`elevation_comparison_3x2.png`（占 slide ~75% 面积）
+
+**右侧或下方一行小字**（不超过 2 行）：
+> Counter-intuitive: severity depends on both **material** and **viewing angle**
+
+**演讲稿**（背熟节奏，看图指点）：
+> "Looking at Zero123++ outputs reveals three distinct failure modes. (指 brass 行) On brass, top-down views are mostly accurate, but at extreme elevation the entire scene inverts. (指 glass 行) On glass, the cup body is preserved but the base hallucinates into a cube — refractive consistency breaks. (指 matte 行) Most striking: matte gray produces phantom shadow boards and disconnected ground planes — even though the cond image is perfectly clear to a human eye. (停顿) Notice the right column: bottom-up views consistently fail more — but the magnitude differs sharply across materials."
+
+---
+
+### SLIDE 6 — Quantitative finding (60s) ⭐
+
+**标题**：Match density quantifies the spectrum
+
+**主图**：`match_density_bar.png`
+
+**叠加文字框 / 标注**（直接在 slide 上加）：
+```
+Average matches per view:
+  Brass:  19.3   ─────  Reliable
+  Glass:   9.3   ─────  Marginal  
+  Matte:   2.2   ─────  Below Sampson threshold
+
+Counter-intuitive: Lambertian, not refractive, fails most.
+```
+
+**演讲稿**：
+> "Quantitatively: brass averages 19 matches per view — reliable. Glass drops to 9. Matte drops to just 2 — nine times fewer than brass, below the threshold for any meaningful Sampson distance. Counter to our hypothesis, **Lambertian surfaces, not refractive ones, fail most severely**. Our explanation: Zero123++ relies on view-dependent texture cues — highlights, reflections — to recover 3D structure. When those cues are absent, the model falls back on its generative prior, hallucinating confidently."
+
+---
+
+### SLIDE 7 — Confound analysis (30s)
+
+**标题**：A subtle finding — material × angle interaction
+
+**视觉**：一个简单 2×3 表（直接在 slide 上打字）：
+
+```
+              el = +20°    el = -10°    Drop ratio
+Brass            22.7         16.0         1.4×
+Glass            11.3          7.3         1.5×
+Matte             3.3          1.0         3.3×  ⚠
+```
+
+**Bullet points**（表格旁边）：
+- All materials degrade at extreme angles
+- **But** Lambertian surfaces are disproportionately hurt (3.3× drop)
+- → Texture cues partially compensate for difficult viewpoints
+
+**演讲稿**：
+> "An important subtlety: extreme angles also degrade quality, but unequally. Lambertian surfaces drop 3.3× from top-down to bottom-up — while reflective brass drops only 1.4×. This means rich texture cues partially compensate for difficult viewpoints, while featureless surfaces amplify viewpoint sensitivity."
+
+---
+
+### SLIDE 8 — Takeaways (15s)
+
+**标题**：Takeaways
+
+**Bullet points**（精简）：
+- ✦ **Counter-intuitive**: hallucination ordering is Lambertian > refractive > reflective
+- ✦ Diffusion models exploit texture as **implicit 3D cues**
+- ✦ Lambertian-dominated benchmarks **systematically miss** these failure modes
+- → Future: photometric metrics, training-aware loss
+
+**演讲稿**：
+> "Three takeaways: hallucination is counter-intuitive, diffusion models use texture as implicit 3D cues, and current benchmarks may miss these failures. Future work: photometric metrics independent of feature matchers, and using Sampson distance as training signal. Thank you."
+
+---
+
+## 时间汇总
+
+| Slide | 时间 | 累计 |
+|---|---|---|
+| 1 Title | 15s | 15s |
+| 2 Motivation | 25s | 40s |
+| 3 Hypothesis | 20s | 60s |
+| 4 Method | 35s | 95s |
+| 5 Visual | 60s | 155s |
+| 6 Quantitative | 60s | 215s |
+| 7 Confound | 30s | 245s |
+| 8 Takeaways | 15s | 260s |
+
+**260 秒 = 4 分 20 秒，超 20 秒**。
+
+### 砍法
+
+第一遍演练时如果超时，按这个优先级砍：
+
+1. **Slide 4 演讲稿砍最后 1 句**（"We test three materials" 删掉，让 slide 5 自己 reveal）→ 省 5 秒
+2. **Slide 7 砍 1 个 bullet**（保留表 + 1 句结论）→ 省 10 秒
+3. **Slide 2 motivation 砍 1 行**（"Real-world objects... ceramics" 删）→ 省 5 秒
+
+---
+
+## 接下来你的 action（按时间）
+
+### 第 1 小时（~14:00-15:00）—— 搭 Slide
+
+1. 打开 Keynote / Google Slides
+2. **建 8 张 slide**，按上面内容填标题 + bullet points
+3. **slide 5 / 6 拖入对应 figure**
+4. **slide 4 画 pipeline 流程图**（5-10 分钟）
+5. **slide 1 排版好** title
+
+### 第 2 小时（~15:00-16:00）—— 演讲稿
+
+1. **演讲稿写在 speaker notes**（每张 slide 的 notes 区）
+2. **不要背诵，读 5 遍熟悉**
+3. **关键数字背熟**：19.3, 9.3, 2.2 / 1.4×, 3.3×
+
+### 第 3 小时（~16:00-17:00）—— 计时演练
+
+1. **第 1 遍**：随便讲，看时长（大概会 5+ 分钟，不用慌）
+2. **第 2 遍**：砍内容，控时到 4:30
+3. **第 3 遍**：精修，控时到 4:00-4:10
+
+### 然后睡觉（17:00-22:00）
+
+5/4 早上再走 1-2 遍。
+
+---
+
+## 还需要我做什么
+
+A. **演讲稿 polish**——你看现在的措辞，需要更口语化/更学术化吗？  
+B. **Slide 4 pipeline 流程图**——需要我画一张让你照着复制吗（用 Mermaid 或 ASCII）？  
+C. **NotebookLM 用法**——要不要我告诉你怎么用 NotebookLM **听** audio overview 帮你练习？
+
+或者直接说："开始搭 slide，搭完发你看"，我就在这等。
+
+时间还有 ~9 小时。**完全够**。深呼吸，开干。

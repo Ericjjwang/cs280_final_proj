@@ -1,0 +1,5 @@
+Scene scene_v2_test:
+  Object Sampson median:     refractive=N/A, matte=6.62 px, ratio=N/A
+  Background Sampson median: refractive=24.66 px, matte=30.85 px, ratio=0.80x
+  Verdict: [FAIL] core claim (object_ratio > 2.0 and background_ratio < 1.5)
+  Reason:  object_ratio=N/A (no object matches)

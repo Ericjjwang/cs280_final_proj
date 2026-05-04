@@ -1,0 +1,4 @@
+scene_id,view_idx,azimuth,elevation,n_matches_refractive,n_matches_matte,n_object_matches_refractive,n_object_matches_matte,n_background_matches_refractive,n_background_matches_matte,object_sampson_refractive_median,object_sampson_matte_median,object_sampson_ratio,background_sampson_refractive_median,background_sampson_matte_median,background_sampson_ratio
+_fake_scene,0.0,29.999999999999996,19.999999999999996,0.0,0.0,0.0,0.0,0.0,0.0,,,,,,
+_fake_scene,1.0,90.0,-10.000000000000004,0.0,0.0,0.0,0.0,0.0,0.0,,,,,,
+_fake_scene,2.0,150.0,19.999999999999996,0.0,0.0,0.0,0.0,0.0,0.0,,,,,,

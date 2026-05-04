@@ -1,0 +1,52 @@
+{
+  "scene_id": "_fake_scene",
+  "view_idx": 0,
+  "azimuth": 29.999999999999996,
+  "elevation": 19.999999999999996,
+  "refractive": {
+    "view_idx": 0,
+    "azimuth": 29.999999999999996,
+    "elevation": 19.999999999999996,
+    "skipped": true,
+    "n_matches": 0,
+    "n_object_matches": 0,
+    "n_background_matches": 0,
+    "n_mixed_matches": 0,
+    "mean_sampson_all": null,
+    "median_sampson_all": null,
+    "mean_sampson_object": null,
+    "median_sampson_object": null,
+    "mean_sampson_background": null,
+    "median_sampson_background": null,
+    "mean_sampson_mixed": null
+  },
+  "matte": {
+    "view_idx": 0,
+    "azimuth": 29.999999999999996,
+    "elevation": 19.999999999999996,
+    "skipped": true,
+    "n_matches": 0,
+    "n_object_matches": 0,
+    "n_background_matches": 0,
+    "n_mixed_matches": 0,
+    "mean_sampson_all": null,
+    "median_sampson_all": null,
+    "mean_sampson_object": null,
+    "median_sampson_object": null,
+    "mean_sampson_background": null,
+    "median_sampson_background": null,
+    "mean_sampson_mixed": null
+  },
+  "summary": {
+    "object_sampson_refractive_median": null,
+    "object_sampson_matte_median": null,
+    "object_sampson_ratio": null,
+    "background_sampson_refractive_median": null,
+    "background_sampson_matte_median": null,
+    "background_sampson_ratio": null,
+    "n_object_matches_refractive": 0,
+    "n_object_matches_matte": 0,
+    "n_background_matches_refractive": 0,
+    "n_background_matches_matte": 0
+  }
+}

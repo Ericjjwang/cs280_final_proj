@@ -1,0 +1,5 @@
+Scene scene_glass_suzanne:
+  Object Sampson median:     refractive=11.87 px, matte=11.03 px, ratio=1.08x
+  Background Sampson median: refractive=25.84 px, matte=24.92 px, ratio=1.04x
+  Verdict: [FAIL] core claim (object_ratio > 2.0 and background_ratio < 1.5)
+  Reason:  object_ratio=1.08x ≤ 2.0x
