@@ -1,0 +1,74 @@
+{
+  "results": [
+    {
+      "check": "File structure complete",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "File count rgb/",
+      "passed": true,
+      "detail": "7 files present"
+    },
+    {
+      "check": "File count matte/",
+      "passed": true,
+      "detail": "7 files present"
+    },
+    {
+      "check": "File count mask/",
+      "passed": true,
+      "detail": "7 files present"
+    },
+    {
+      "check": "File count depth/",
+      "passed": true,
+      "detail": "7 files present"
+    },
+    {
+      "check": "Resolution 512\u00d7512",
+      "passed": true,
+      "detail": "all images OK"
+    },
+    {
+      "check": "Mask strictly binary (0/255)",
+      "passed": true,
+      "detail": "all 7 masks OK"
+    },
+    {
+      "check": "Depth p10\u2013p90 within [0.5, 6.0] m",
+      "passed": true,
+      "detail": "all 7 EXRs OK"
+    },
+    {
+      "check": "View az/el match Zero123++ convention (\u00b12\u00b0)",
+      "passed": true,
+      "detail": "all 6 views OK"
+    },
+    {
+      "check": "Cond pose az=0\u00b0 el=0\u00b0 (\u00b12\u00b0)",
+      "passed": true,
+      "detail": "az=0.00\u00b0 el=10.00\u00b0"
+    },
+    {
+      "check": "Camera radius 1.5 m \u00b10.05 m",
+      "passed": true,
+      "detail": "all 7 cameras OK"
+    },
+    {
+      "check": "rgb/ and matte/ share same view set (pose consistency)",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "K matrices identical across all views",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "R matrices valid rotations (det\u22481, R R\u1d40\u2248I)",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}

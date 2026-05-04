@@ -17,7 +17,7 @@ Six fixed output poses of Zero123++ v1.2 (arXiv:2310.15110, Table 1):
   4      270°     +20°        bot-left
   5      330°     -10°        bot-right
 
-Condition image is implicitly at az=0°, el=0°.
+Condition image is implicitly at az=0°, el=10°.
 Output FOV is unified to 30° in v1.2.
 """
 
@@ -42,9 +42,9 @@ def get_intrinsics(img_size: int = IMG_SIZE, fov_deg: float = FOV_DEG) -> np.nda
                      [0,     0,     1.0]], dtype=np.float64)
 
 
-def get_condition_pose(radius: float = 1.5) -> tuple[np.ndarray, np.ndarray]:
-    """Extrinsic (R, t) of the condition camera: az=0°, el=0°."""
-    eye = _spherical_to_xyz(0.0, 0.0, radius)
+def get_condition_pose(radius: float = 1.5, el_deg: float = 10.0) -> tuple[np.ndarray, np.ndarray]:
+    """Extrinsic (R, t) of the condition camera: az=0°, el=10°."""
+    eye = _spherical_to_xyz(0.0, el_deg, radius)
     return _look_at_opencv(eye, np.zeros(3))
 
 
